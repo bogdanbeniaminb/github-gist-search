@@ -3,6 +3,10 @@ import { UserInterface } from '../store/initialState';
 // import { token } from './token';
 
 export const getUser = async (username: string): Promise<UserInterface> => {
+  if (username.match(/\//)) {
+    throw new Error('Incorrect username');
+  }
+
   // we are NOT using octokit because it uses node-fetch, which in turn has issues with Webpack 5. It's too tricky to fix them (we have to manage node polyfills manually) and it's not worth it for the moment.
   // await octokit.request('GET /users/{username}', { username });
 

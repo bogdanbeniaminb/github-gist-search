@@ -17,13 +17,16 @@ export default function SearchForm(props) {
     dispatch(Actions.search(username));
   };
 
-  console.log({ styles });
+  console.log({ errors });
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formField}>
         <input
-          {...register('username', { required: true })}
+          {...register('username', {
+            required: true,
+            pattern: /^[^\/]{3,}$/,
+          })}
           type='search'
           placeholder='Enter Github Username'
           className={styles.inputField}
@@ -43,7 +46,13 @@ export default function SearchForm(props) {
             />
           </svg>
         </button>
-        {errors.username && <p className={styles.errorMessage}>This field is required</p>}
+        {errors.username && (
+          <p className={styles.errorMessage}>
+            {errors.username.type == 'required'
+              ? 'This field is required.'
+              : 'Please insert a valid username.'}
+          </p>
+        )}
       </div>
     </form>
   );
