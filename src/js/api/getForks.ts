@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ForkInterface } from '../store/initialState';
 import { getUser } from './getUser';
-// import { token } from './token';
+import { token } from './token';
 
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
@@ -13,7 +13,7 @@ export const getForks = async (gistId: string) => {
 
   const response = await axios.get(`https://api.github.com/gists/${gistId}/forks`, {
     headers: {
-      // Authorization: `token ${token}`,
+      Authorization: token ? `token ${token}` : undefined,
       Accept: 'application/vnd.github.v3+json',
     },
   });

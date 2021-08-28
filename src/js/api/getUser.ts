@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { UserInterface } from '../store/initialState';
-// import { token } from './token';
+import { token } from './token';
 
 export const getUser = async (username: string): Promise<UserInterface> => {
   if (username.match(/\//)) {
@@ -12,7 +12,7 @@ export const getUser = async (username: string): Promise<UserInterface> => {
 
   const response = await axios.get(`https://api.github.com/users/${username}`, {
     headers: {
-      // Authorization: `token ${token}`,
+      Authorization: token ? `token ${token}` : undefined,
       Accept: 'application/vnd.github.v3+json',
     },
   });

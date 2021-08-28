@@ -4,7 +4,7 @@ A simple SPA to look through users' Github gists (search by user).
 
 ## Warning
 
-If you make too many calls to the Github API, you will get locked out for a while (error 403 messages will start to appear). To work around this, you will need an API token.
+If you make too many calls to the Github API, you will get locked out for a while (error 403 messages will start to appear - we have a limit of 60 API calls per hour). To work around this, you will need an API token. Generate a Personal Token inside your Developer account in Github and they put it into `src/js/api/token.ts`.
 
 ## Running it locally
 
