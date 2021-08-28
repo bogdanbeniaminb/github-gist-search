@@ -1,3 +1,3 @@
 # Github-gist-search
 
-A simple SPA to look through users' Github gists (search by user, filter by tags).
+A simple SPA to look through users' Github gists (search by user).

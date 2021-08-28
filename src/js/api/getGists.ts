@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GistInterface } from '../store/initialState';
+import { token } from './token';
 
 export const getGists = async (username: string): Promise<GistInterface[]> => {
   // we are NOT using octokit because it uses node-fetch, which in turn has issues with Webpack 5. It's too tricky to fix them (we have to manage node polyfills manually) and it's not worth it for the moment.
@@ -7,6 +8,7 @@ export const getGists = async (username: string): Promise<GistInterface[]> => {
 
   const response = await axios.get(`https://api.github.com/users/${username}/gists`, {
     headers: {
+      Authorization: `token ${token}`,
       Accept: 'application/vnd.github.v3+json',
     },
   });

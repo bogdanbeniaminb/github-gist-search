@@ -24,6 +24,7 @@ body {
   &-header {
     display: flex;
     flex-direction: column;
+    cursor: zoom-in;
 
     @media (min-width: 600px) {
       flex-direction: row;
@@ -31,6 +32,10 @@ body {
       align-items: flex-start;
       gap: 24px;
     }
+  }
+
+  &-subheader {
+    cursor: zoom-in;
   }
 
   &-body {
@@ -162,5 +167,14 @@ body {
       border-radius: 50%;
       overflow: hidden;
     }
+  }
+
+  &-content {
+    &:empty {
+      display: none;
+    }
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
   }
 }

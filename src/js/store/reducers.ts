@@ -27,6 +27,7 @@ export const loadGist = (state: StateType, { id }: { id: string }): StateType =>
   return {
     ...state,
     loadingGists: [...state.loadingGists, id],
+    loadGistsErrors: { ...state.loadGistsErrors, [id]: undefined },
   };
 };
 
@@ -40,9 +41,11 @@ export const loadGistSuccess = (state: StateType, { id, content }): StateType =>
 };
 
 export const loadGistFailed = (state: StateType, { id, error = 'Error' }): StateType => {
+  const { loadingGists } = state;
   return {
     ...state,
     searching: false,
+    loadingGists: loadingGists.filter(item => item != id),
     loadGistsErrors: { ...state.loadGistsErrors, [id]: error },
   };
 };
