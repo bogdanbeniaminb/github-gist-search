@@ -1,0 +1,23 @@
+.avatar {
+  margin: 0 0 16px;
+  img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.authorName {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.username {
+  font-weight: 200;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  letter-spacing: 0.2px;
+}

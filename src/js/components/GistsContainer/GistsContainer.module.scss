@@ -1,0 +1,27 @@
+.container {
+  padding: 10px 0;
+  display: grid;
+  gap: 32px;
+  grid-template-areas:
+    'a'
+    'b';
+
+  @media screen and (min-width: 600px) {
+    grid-template-areas: 'a b';
+    grid-template-columns: minmax(200px, 280px) 1fr;
+  }
+}
+
+.authorInfo {
+  grid-area: a;
+}
+
+.gistsList {
+  grid-area: b;
+}
+
+.title {
+  font-weight: 300;
+  font-size: 20px;
+  text-align: center;
+}

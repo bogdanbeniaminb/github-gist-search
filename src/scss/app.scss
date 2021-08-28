@@ -1,3 +1,108 @@
+@import '~normalize-scss';
+
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.gist {
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 32px;
+
+  &-header {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 600px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+  }
+
+  &-author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  &-avatar {
+    max-width: 30px;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    img {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &-path {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    color: #aaa;
+    a {
+      color: rgb(5, 57, 212);
+      font-size: 15px;
+      text-decoration: none;
+    }
+  }
+
+  &-date {
+    color: #777;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  &-tags {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  &-tag {
+    font-size: 12px;
+    background-color:rgb(255, 227, 194);
+    border-radius: 3px;
+    padding: 4px 8px;
+    color: #333;
+
+    &.gist-language-javascript {
+      background-color: #EFD81D;
+    }
+    &.gist-language-python {
+      background-color: #3675AB;
+      color: #FFF;
+    }
+    &.gist-language-java {
+      background-color: #EA2C2D;
+      color: #FFF;
+    }
+    &.gist-language-svelte {
+      background-color: #F73C00;
+      color: #FFF;
+    }
+    &.gist-language-vue {
+      background-color: #3FB27F;
+      color: #FFF;
+    }
+    &.gist-language-dockerfile {
+      background-color: #2697ED;
+      color: #FFF;
+    }
+  }
 }
