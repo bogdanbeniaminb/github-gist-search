@@ -1,6 +1,17 @@
+export interface OwnerInterface {
+  login: string;
+  id: number;
+  url: string;
+  html_url: string;
+  gists_url: string;
+  type: string;
+  avatar_url: string;
+}
+
 export interface GistInterface {
   url: string;
   forks_url: string;
+  html_url?: string;
   id: string;
   commits_url: string;
   created_at: string;
@@ -15,15 +26,7 @@ export interface GistInterface {
       size: number;
     }
   >;
-  owner: {
-    login: string;
-    id: number;
-    url: string;
-    html_url: string;
-    gists_url: string;
-    type: string;
-    avatar_url: string;
-  };
+  owner: OwnerInterface;
 }
 
 export interface UserInterface {
@@ -45,6 +48,10 @@ export interface UserInterface {
   updated_at: string;
 }
 
+export interface ForkInterface {
+  owner: OwnerInterface;
+}
+
 export type StateType = {
   username?: string;
   user?: UserInterface;
@@ -57,7 +64,13 @@ export type StateType = {
   loadedGists: Record<string, string>;
 
   gists?: Array<GistInterface>;
-  forks?: Array<any>;
+  forks?: Record<
+    string,
+    {
+      number: number;
+      forkAuthors: UserInterface[];
+    }
+  >;
 };
 
 export const initialState: StateType = {
@@ -69,5 +82,5 @@ export const initialState: StateType = {
   loadGistsErrors: {},
   loadedGists: {},
   gists: [],
-  forks: [],
+  forks: {},
 };

@@ -15,8 +15,8 @@ export const startSearch = (
   };
 };
 
-export const searchSuccess = (state: StateType, { user, gists, forks }): StateType => {
-  return { ...state, searching: false, user, gists, forks };
+export const searchSuccess = (state: StateType, { user, gists }): StateType => {
+  return { ...state, searching: false, user, gists };
 };
 
 export const searchFailed = (state: StateType, { error = 'Error' }): StateType => {
@@ -47,6 +47,26 @@ export const loadGistFailed = (state: StateType, { id, error = 'Error' }): State
   };
 };
 
+export const getGistForks = (state: StateType, { id }: { id: string }): StateType => {
+  return {
+    ...state,
+    forks: {
+      ...state.forks,
+      [id]: null, // this needs to be here, so that we don't keep loading it again and again
+    },
+  };
+};
+
+export const getGistForksSuccess = (state: StateType, { id, forks }): StateType => {
+  return {
+    ...state,
+    forks: {
+      ...state.forks,
+      [id]: forks,
+    },
+  };
+};
+
 const reducer = createReducer(initialState, {
   [Types.SEARCH]: startSearch,
   [Types.SEARCH_SUCCESS]: searchSuccess,
@@ -55,6 +75,9 @@ const reducer = createReducer(initialState, {
   [Types.LOAD_GIST]: loadGist,
   [Types.LOAD_GIST_SUCCESS]: loadGistSuccess,
   [Types.LOAD_GIST_FAILED]: loadGistFailed,
+
+  [Types.GET_GIST_FORKS]: getGistForks,
+  [Types.GET_GIST_FORKS_SUCCESS]: getGistForksSuccess,
 });
 
 const persistConfig = {

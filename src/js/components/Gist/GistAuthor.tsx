@@ -13,13 +13,13 @@ export const GistAuthor = ({ gist }: { gist: GistInterface }) => {
       <figure className='gist-avatar'>
         <img src={gist.owner.avatar_url} alt={gist.owner.login} />
       </figure>
-      <div className='gist-info'>
+      <div className='gist-left-info'>
         <div className='gist-path'>
           <a href={gist.owner.html_url} target='_blank' rel='noopener noreferrer'>
             {gist.owner.login}
           </a>
           /
-          <a href={gist.url} target='_blank' rel='noopener noreferrer'>
+          <a href={gist.html_url} target='_blank' rel='noopener noreferrer'>
             {fileName}
           </a>
         </div>
