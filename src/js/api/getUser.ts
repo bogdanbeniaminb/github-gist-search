@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { UserInterface } from '../store/initialState';
-import { token } from './token';
+// import { token } from './token';
 
 export const getUser = async (username: string): Promise<UserInterface> => {
   // we are NOT using octokit because it uses node-fetch, which in turn has issues with Webpack 5. It's too tricky to fix them (we have to manage node polyfills manually) and it's not worth it for the moment.
@@ -8,7 +8,7 @@ export const getUser = async (username: string): Promise<UserInterface> => {
 
   const response = await axios.get(`https://api.github.com/users/${username}`, {
     headers: {
-      Authorization: `token ${token}`,
+      // Authorization: `token ${token}`,
       Accept: 'application/vnd.github.v3+json',
     },
   });

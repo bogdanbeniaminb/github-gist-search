@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ForkInterface } from '../store/initialState';
 import { getUser } from './getUser';
-import { token } from './token';
+// import { token } from './token';
 
 export const getForks = async (gistId: string) => {
   // we are NOT using octokit because it uses node-fetch, which in turn has issues with Webpack 5. It's too tricky to fix them (we have to manage node polyfills manually) and it's not worth it for the moment.
@@ -9,7 +9,7 @@ export const getForks = async (gistId: string) => {
 
   const response = await axios.get(`https://api.github.com/gists/${gistId}/forks`, {
     headers: {
-      Authorization: `token ${token}`,
+      // Authorization: `token ${token}`,
       Accept: 'application/vnd.github.v3+json',
     },
   });
