@@ -29,5 +29,10 @@ And then go to the URL displayed in the console (usually <http://localhost:8080/
 ## Optimizations
 
 - The forks info is loaded after the gists are loaded, in order to show some content to the users. If there are a lot of gists, it takes a lot to load this info and it's better to load it afterwards.
-- We should load all the user's gists (not only the 30 that the API returns by default) - implement pagination.
 - The Syntax Highlighter is loaded with React.lazy, so that it doesn't block the first load that much. It's a huge component, and it's not needed right away.
+
+## Other possible optimizations
+
+- We should load all the user's gists (not only the 30 that the API returns by default) - implement pagination.
+- We should keep track of "fork users" and don't load the same user info more than once.
+- Implement IntersectionObserver lazy-loading for the "fork users" - only load for the gists that are in the viewport.
