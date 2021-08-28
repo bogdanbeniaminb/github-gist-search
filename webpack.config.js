@@ -14,7 +14,7 @@ const makeConfig = () => {
       filename: './index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: '../css/[name].css',
+      filename: './css/[name].css',
       chunkFilename: '[id].css',
     }),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
@@ -66,20 +66,8 @@ const makeConfig = () => {
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                publicPath: (resourcePath, context) => {
-                  const newPath = path.relative(path.dirname(resourcePath), context);
-                  return newPath.replace('\\', '/') + '/css/';
-                },
-              },
             },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: true,
-              },
-            },
+            { loader: 'css-loader' },
             { loader: 'postcss-loader', options: postcssConfig },
             'sass-loader',
           ],
