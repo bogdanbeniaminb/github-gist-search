@@ -1,12 +1,16 @@
-@import '~normalize-scss';
+@import 'normalize';
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
 }
 
 .app-container {
-  width: 100%;
-  max-width: 1260px;
+  max-width: 100%;
+  width: 1260px;
   margin: 0 auto;
   padding: 30px;
 }
