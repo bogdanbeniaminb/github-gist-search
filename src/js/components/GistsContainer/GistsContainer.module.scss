@@ -1,7 +1,7 @@
 .container {
   padding: 10px 0;
   display: grid;
-  gap: 32px;
+  gap: 44px;
   grid-template-areas:
     'a'
     'b';
@@ -24,4 +24,22 @@
   font-weight: 300;
   font-size: 20px;
   text-align: center;
+}
+
+.loading, .error {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+  }
+}
+
+.error {
+  color: red;
 }

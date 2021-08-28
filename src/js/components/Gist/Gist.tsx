@@ -30,8 +30,6 @@ export const Gist = ({ gist }: { gist: GistInterface }) => {
     setIsOpen(true);
   };
 
-  console.log({ loadedGists });
-
   return (
     <li className='gist'>
       <div className='gist-header' onClick={toggleGistContent}>
