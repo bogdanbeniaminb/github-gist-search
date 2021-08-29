@@ -1,18 +1,16 @@
+import { useEffect } from 'react';
 import { Actions } from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { GistInterface } from '../../store/initialState';
 
-export const GistForks = ({ gist }: { gist: GistInterface }) => {
-  const gistId = gist.id;
-
+export const GistForks = ({ gist: { id: gistId } }: { gist: GistInterface }) => {
   const forks = useAppSelector(state => state.forks);
   const dispatch = useAppDispatch();
 
-  // load the forks info, if no info has been loaded yet
-  if (!(gistId in forks)) {
+  useEffect(() => {
+    // load the forks info
     dispatch(Actions.getGistForks(gistId));
-    return null;
-  }
+  }, [gistId]);
 
   const gistForks = forks[gistId];
   if (!gistForks || !gistForks.number) return null;
