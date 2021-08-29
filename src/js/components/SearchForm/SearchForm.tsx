@@ -1,23 +1,25 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { Actions } from '../../store/actions';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import styles from './SearchForm.module.scss';
 
 export default function SearchForm(props) {
-  const dispatch = useDispatch();
+  const username = useAppSelector(state => state.username);
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      username,
+    },
+  });
 
   const onSubmit = ({ username }) => {
-    console.log('submit');
     dispatch(Actions.search(username));
   };
-
-  console.log({ errors });
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
