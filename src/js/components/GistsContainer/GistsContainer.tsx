@@ -1,10 +1,14 @@
 import { useAppSelector } from '../../store/hooks';
 import AuthorInfo from '../AuthorInfo/AuthorInfo';
-import Gist from '../Gist/Gist';
 import GistsList from '../GistsList/GistsList';
 import styles from './GistsContainer.module.scss';
 
-export const GistsContainer = props => {
+// initialize time-ago globally
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+TimeAgo.addDefaultLocale(en);
+
+export const GistsContainer = () => {
   const username = useAppSelector(state => state.username);
   const gists = useAppSelector(state => state.gists);
   const loading = useAppSelector(state => state.searching);

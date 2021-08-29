@@ -1,16 +1,21 @@
-import GistsContainer from './GistsContainer/GistsContainer';
 import SearchForm from './SearchForm/SearchForm';
-
-// initialize time-ago globally
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
-TimeAgo.addDefaultLocale(en);
+import { useAppSelector } from '../store/hooks';
+import { lazy, Suspense } from 'react';
+const GistsContainer = lazy(() => import('./GistsContainer/GistsContainer'));
 
 const App = () => {
+  const shouldShowGists = useAppSelector(
+    state => state.username || state.searching || state.searchError
+  );
+
   return (
     <div className='app-container'>
       <SearchForm />
-      <GistsContainer />
+      {shouldShowGists && (
+        <Suspense fallback={<p style={{ textAlign: 'center' }}>...</p>}>
+          <GistsContainer />
+        </Suspense>
+      )}
     </div>
   );
 };
