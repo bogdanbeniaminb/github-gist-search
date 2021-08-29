@@ -1,4 +1,5 @@
 import { persistReducer } from 'redux-persist';
+import { PersistConfig } from 'redux-persist/es/types';
 import storage from 'redux-persist/lib/storage';
 import { createReducer } from 'reduxsauce';
 import { Types } from './actions';
@@ -20,7 +21,7 @@ export const searchSuccess = (state: StateType, { user, gists }): StateType => {
 };
 
 export const searchFailed = (state: StateType, { error = 'Error' }): StateType => {
-  return { ...state, searching: false, searchError: error };
+  return { ...state, username: '', searching: false, searchError: error };
 };
 
 export const loadGist = (state: StateType, { id }: { id: string }): StateType => {
@@ -83,9 +84,11 @@ const reducer = createReducer(initialState, {
   [Types.GET_GIST_FORKS_SUCCESS]: getGistForksSuccess,
 });
 
-const persistConfig = {
+const persistConfig: PersistConfig<StateType, any, any, any> = {
   key: 'gist-search',
+  version: 1.0,
   storage,
+  blacklist: ['searching', 'searchError', 'loadingGists', 'loadGistsErrors'],
 };
 
 export const persistedReducer = persistReducer(persistConfig, reducer);

@@ -9,7 +9,9 @@ export const GistForks = ({ gist: { id: gistId } }: { gist: GistInterface }) => 
 
   useEffect(() => {
     // load the forks info
-    dispatch(Actions.getGistForks(gistId));
+    if (!(gistId in forks)) {
+      dispatch(Actions.getGistForks(gistId));
+    }
   }, [gistId]);
 
   const gistForks = forks[gistId];
