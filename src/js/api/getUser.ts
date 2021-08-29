@@ -3,7 +3,8 @@ import { UserInterface } from '../store/initialState';
 import { token } from './token';
 
 /**
- * store the loaded users promises in a cache, to prevent multiple API calls
+ * store the loaded users promises in a cache, to prevent multiple API calls.
+ * This is especially useful for the fork users - there might be multiple forks by the same users, so we shouldn't load them multiple times.
  */
 const usersCache = new Map<string, Promise<UserInterface>>();
 
